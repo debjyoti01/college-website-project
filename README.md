@@ -8,16 +8,16 @@ The purpose of this research is to analyze the use of The Student teacher manage
 
 <h1>Data Flow Diagram</h1>
 <h3>DFD level 0</h3>
-![image](https://user-images.githubusercontent.com/120040021/230706792-60141e95-3343-4ce8-88fc-d1e6860e7bcc.png)
+<img src=https://user-images.githubusercontent.com/120040021/230706792-60141e95-3343-4ce8-88fc-d1e6860e7bcc.png>
 
 <h3>DFD level 1</h3>
-![level 1 dfd](https://user-images.githubusercontent.com/120040021/230706733-a9529451-cb83-4a4c-a239-37e40b4dba8d.png)
+<img src=https://user-images.githubusercontent.com/120040021/230706733-a9529451-cb83-4a4c-a239-37e40b4dba8d.png>
 
 <h3>DFD level 2</h3>
-![level 2 dfd](https://user-images.githubusercontent.com/120040021/230706742-3421d4b4-88e7-4150-98a5-c4510c3741bd.png)
+<img src=https://user-images.githubusercontent.com/120040021/230706742-3421d4b4-88e7-4150-98a5-c4510c3741bd.png>
 
 <h3>DFD level 3</h3>
-![level 3_page-0001](https://user-images.githubusercontent.com/120040021/230706776-ec883182-1b3c-41bb-9733-8536ca4eea2f.jpg)
+<img src=https://user-images.githubusercontent.com/120040021/230706776-ec883182-1b3c-41bb-9733-8536ca4eea2f.jpg>
 
 <h1>ER Diagram</h1>
-![image](https://user-images.githubusercontent.com/120040021/230706849-b637720e-78c1-4b70-b808-54b0db282096.png)
+<img src=https://user-images.githubusercontent.com/120040021/230706849-b637720e-78c1-4b70-b808-54b0db282096.png>
