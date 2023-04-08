@@ -1,0 +1,308 @@
+<!-- pages\teacher_register.html -->
+
+<!-- teacher register page -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sheet1.css">
+    <link rel="stylesheet" href="../css/student_registration_style.css">
+    <title>Teacher Register</title>
+</head>
+
+<body>
+    <!-- nav-bar -->
+    <nav>
+        <div class="nav-bar">
+            <div class="nav-items">
+                <ul>
+                    <li class="nav-item"><a href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="current" href="log_in.html">Log In</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- registration-form -->
+
+    <section class="registration-form">
+        <div class="form-container">
+            <form action="" id="registration" method="">
+                <label for="fname">Frist Name<span style="color:#ff0000">*</span> </label><input type="text"
+                    name="fname" id="fname"><br>
+                <p class="error-massage" id="error-fname"></p>
+                <label for="mname">Middle Name </label><input type="text" name="mname" id="mname"><br>
+                <p class="error-massage" id="error-mname"></p>
+                <label for="lname">Last Name<span style="color:#ff0000">*</span> </label><input type="text" name="lname"
+                    id="lname"><br>
+                <p class="error-massage" id="error-lname"></p>
+                <label for="dob">Date of Birth<span style="color:#ff0000">*</span> </label><input type="date" name="dob"
+                    id="dob"><br>
+                <p class="error-massage" id="error-dob"></p>
+                <label for="gender">Gender<span style="color:#ff0000">*</span></label>
+                <select name="gender" id="gender">
+                    <option value="blank" selected disabled>--Select Gender--</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Others</option>
+                </select><br>
+                <p class="error-massage" id="error-gender"></p>
+                <label for="father-name">Father Name<span style="color:#ff0000">*</span> </label><input type="text"
+                    name="father-name" id="father-name"><br>
+                <p class="error-massage" id="error-father-name"></p>
+                <label for="contact-number">Contact Number<span style="color:#ff0000">*</span> </label><input
+                    type="number" name="contact-number" id="contact-number"><br>
+                <p class="error-massage" id="error-contact-number"></p>
+                <label for="email">E mail<span style="color:#ff0000">*</span> </label><input type="email" name="email"
+                    id="email"><br>
+                <p class="error-massage" id="error-email"></p>
+                <label for="id">Teacher Id<span style="color:#ff0000">*</span> </label><input type="text" name="id"
+                    id="id"><br>
+                <p class="error-massage" id="error-id"></p>
+                <label for="stream">Stream<span style="color:#ff0000">*</span></label>
+                <select name="stream" id="stream">
+                    <option value="blank" selected disabled>--Select Stream--</option>
+                    <option value="science">Science</option>
+                    <option value="commerce">Commerce</option>
+                    <option value="arts">Arts</option>
+                </select><br>
+                <p class="error-massage" id="error-stream"></p>
+
+                <label for="dept">Department<span style="color:#ff0000">*</span></label>
+                <select name="dept" id="dept">
+                    <option value="blank" id="select-dept" selected disabled>--Select Department--</option>
+
+                </select><br>
+                <p class="error-massage" id="error-dept"></p>
+
+                <label for="password">Password<span style="color:#ff0000">*</span> </label><input type="password"
+                    id="password"><br>
+                <p class="error-massage" id="error-password"></p>
+                <label for="confirm-password">Confirm Password<span style="color:#ff0000">*</span> </label> <input
+                    type="password" name="confirm-password" id="confirm-password"><br>
+                <p class="error-massage" id="error-confirm-password"></p>
+                <label for="sequrity-question">Sequrity Question<span style="color:#ff0000">*</span></label>
+                <select name="sequrity-question" id="sequrity-question">
+                    <option value="blank" id="select-sequrity-question" selected disabled>--Select Sequrity Question--
+                    </option>
+                    <option value="1">What is your pet name?</option>
+                    <option value="2">What is your first school in life?</option>
+                    <option value="3">Who is your bestfriend?</option>
+                </select><br>
+                <p class="error-massage" id="error-sequrity-question"></p>
+                <label for="sequrity-answer">Answer<span style="color:#ff0000">*</span> </label><input type="text"
+                    name="sequrity-answer" id="sequrity-answer"><br>
+                <p class="error-massage" id="error-sequrity-answer"></p>
+                <div class="clear"></div>
+                <button type="button" id="submit" name="submit">Sign Up</button>
+                <div id="massage"></div>
+            </form>
+        </div>
+
+        <script src="../js/jquery.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $('input, select').focus(function () {
+                    $(this).css('background-color', 'rgb(142, 204, 237)');
+                })
+
+                $('input, select').blur(function () {
+                    $(this).css('background-color', '');
+                })
+
+                // fetch the course according to stream
+                $("#stream").on("change", function () {
+                    $('option').remove('.added-course');
+                    var stream = $("#stream").val();
+                    console.log("get-dept");
+                    $.ajax({
+
+                        url: "../php/get-course.php",
+                        type: "POST",
+                        data: { stream: stream },
+                        success: function (data) {
+                            console.log(data);
+                            $('#dept').append(data);
+                        }
+                    })
+                })
+
+                // submitting details
+                $("#submit").click(function () {
+                    $('.error-massage').empty();
+                    $('#massage').empty();
+                    var fname = $.trim($("#fname").val());
+                    var mname = $.trim($("#mname").val());
+                    var lname = $.trim($("#lname").val());
+                    var dob = $("#dob").val();
+                    var gender = $("#gender").val();
+                    var fatherName = $.trim($("#father-name").val());
+                    var contactNumber = $("#contact-number").val();
+                    var email = $.trim($("#email").val());
+                    var id = $.trim($("#id").val());
+                    var stream = $("#stream").val();
+                    var dept = $("#dept").val();
+                    var password = $("#password").val();
+                    var confirmPassword = $("#confirm-password").val();
+                    var sequrityQuestion = $("#sequrity-question").val();
+                    var sequrityAnswer = $("#sequrity-answer").val();
+                    var flag = true;
+                    // ckecking all mandetory fields are set or not
+
+                    if (fname == "" || lname == "" || dob == "" || gender == null || contactNumber == "" || email == "" || id == "" || password == "" || stream == null || dept == null || confirmPassword == "" || sequrityQuestion == null || sequrityAnswer == "") {
+                        flag = false;
+
+                        $('#massage').addClass("error").html("Mandetory Field Can't be Empty");
+
+                        if (fname == "") {
+                            $('#fname').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (lname == "") {
+                            $('#lname').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (dob == "") {
+                            $('#dob').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (gender == null) {
+                            $('#gender').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (fatherName == "") {
+                            $('#father-name').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (contactNumber == "") {
+                            $('#contact-number').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (email == "") {
+                            $('#email').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (id == "") {
+                            $('#id').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (stream == null) {
+                            $('#stream').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (dept == null) {
+                            $('#dept').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (password == "") {
+                            $('#password').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (confirmPassword == "") {
+                            $('#confirm-password').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (sequrityQuestion == null) {
+                            $('#sequrity-question').css('background-color', 'rgb(245, 165, 159)');
+                        }
+
+                        if (sequrityAnswer == "") {
+                            $('#sequrity-answer').css('background-color', 'rgb(245, 165, 159)');
+                        }
+                    }
+                    else {
+                        // all type of input validation
+
+                        if (!isName(fname)) {
+                            flag = false;
+                            $('#error-fname').html("**Enter a valid first name");
+                        }
+
+                        if (!isName(mname)) {
+                            flag = false;
+                            $('#error-mname').html("**Enter a valid middle name");
+                        }
+
+                        if (!isName(lname)) {
+                            flag = false;
+                            $('#error-lname').html("**Enter a valid last name");
+                        }
+
+
+                        if (!contactNumberValidation(contactNumber)) {
+                            flag = false;
+                            $('#error-contact-number').html("**The contact number should be 10 digits");
+                        }
+
+                        if (!isEmail(email)) {
+                            flag = false;
+                            $('#error-email').html("**Enter a valid email");
+                        }
+
+                        if (!(password === confirmPassword)) {
+                            flag = false;
+                            $('#error-confirm-password').html("**Confirm password donot match with password");
+                        }
+                    }
+
+                    if (flag) {
+                        // if all inputs are valid
+
+                        $.ajax({
+                            url: "../php/teacher_register.php",
+                            type: "POST",
+                            data: { fname: fname, mname: mname, lname: lname, dob: dob, gender: gender, fatherName: fatherName, contactNumber: contactNumber, email: email, id: id, password: password, confirmPassword: confirmPassword, stream: stream, dept: dept, sequrityQuestion: sequrityQuestion, sequrityAnswer: sequrityAnswer },
+                            success: function (data) {
+                                if (data == 1) {
+                                    $('#massage').addClass("success").html("Record Stored succesfully");
+                                    $("#teacher-registration").trigger("reset");
+                                }
+                                else if (data == 0) {
+                                    $('#massage').addClass("error").html("Can not Store the record");
+                                }
+                                else {
+                                    $('#massage').addClass("error").html(data);
+                                }
+                            }
+                        });
+                    }
+                });
+
+                function isName(name) {
+                    var regex = /^[a-zA-z]*$/;
+                    return regex.test(name);
+                }
+
+
+                function isNameWithSpace(name) {
+                    var regex = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
+                    return regex.test(name);
+                }
+
+                function contactNumberValidation(num) {
+                    console.log(typeof (num));
+                    console.log(num.length);
+                    if (num.length == 10)
+                        return true;
+                    else
+                        return false;
+                }
+
+                function isEmail(email) {
+                    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                    return regex.test(email);
+                }
+
+
+            });
+        </script>
+    </section>
+</body>
+
+</html>

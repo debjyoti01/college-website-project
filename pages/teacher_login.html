@@ -1,0 +1,84 @@
+<!-- pages\teacher_login.html -->
+
+<!-- teacher login -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sheet1.css">
+    <link rel="stylesheet" href="../css/student_log_in_style.css">
+    <title>Teacher log in</title>
+</head>
+
+<body>
+    <!-- nav-bar -->
+    <nav>
+        <div class="nav-bar">
+            <div class="nav-items">
+                <ul>
+                    <li class="nav-item" ><a href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="current" href="log_in.html">Log In</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="main-body">
+        <div class="container">
+            <form action="">
+                <label for="user-name">Teacher Id</label><input id="id" type="text">
+                <label for="password">Password</label><input id="password" type="password">
+                <a href="forgot_password.html">
+                    <p>Forgot Password?</p>
+                </a>
+                <button type="button" id="submit">LOG IN</button>
+                <p>New User? <a href="teacher_register.html">Register Now</a></p>
+                <div id="massage"></div>
+            </form>
+        </div>
+        <script src="../js/jquery.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('input, select').focus(function () {
+                    $(this).css('background-color', 'rgb(142, 204, 237)');
+                });
+
+                $('input, select').blur(function () {
+                    $(this).css('background-color', '');
+                });
+
+                // fetch user is valid or not
+                $('#submit').click(function () {
+                    var id = $.trim($("#id").val());
+                    var password = $("#password").val();
+                    $.ajax({
+                        url: "../php/teacher_login.php",
+                        type: "POST",
+                        data: { id: id, password: password },
+                        success: function (data) {
+                            console.log(data);
+                            console.log((data == 1));
+                            if (data == 1) {
+                                window.location.replace("teacher_dashboard.html");
+                            }
+                            else if (data == 0) {
+                                $('#massage').addClass("error").html("Invalid Techer Id or Password");
+                            }
+                            else {
+                                $('#massage').addClass("error").html(data);
+                                console.log(data);
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    </section>
+
+</body>
+
+</html>

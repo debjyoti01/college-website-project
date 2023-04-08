@@ -1,0 +1,162 @@
+<!-- pages\teacher_dashboard_add_class_add_participants.html -->
+
+<!-- this page add participants in class -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sheet1.css">
+    <link rel="stylesheet" href="../css/teacher_student_dashboard.css">
+    <title>Student log in</title>
+</head>
+
+<body>
+    <!-- nav-bar -->
+    <nav>
+        <div class="nav-bar">
+            <div class="nav-items">
+                <ul>
+                    <li class="nav-item" ><a href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="current" href="log_in.html">Log In</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- shows the session details -->
+    <section class="session-details-container">
+        <section class="session-details">
+            <h3 class="session-id"></h3>
+            <h3 class="log-out"><a href="../php/log_out.php">Log Out</a></h3>
+        </section>
+    </section>
+
+    <script src="../js/jquery.js"></script>
+    <!-- fetch the session details -->
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "../php/check_session.php",
+                type: "POST",
+                data: {},
+                success: function(data) {
+                    if (data == 0) {
+                        window.location.replace("log_in.html");
+                    }
+                    $(".session-details .session-id").html("ID : " + data);
+                }
+            })
+        })
+    </script>
+
+    <!-- options of dashboard  -->
+    <section class="dashboard-body">
+        <div class="option">
+            <ul>
+                <li id="details"><a href="teacher_dashboard.html">Details</a></li>
+                <li id="classes"><a href="teacher_dashboard_add_class.html">Classes</a></li>
+                <li id="chat"><a href="teacher_dashboard_chat_groups.html">Chat Group</a></li>
+                <li id="chat"><a href="teacher_dashboard_attendence.html">Attendence</a></li>
+            </ul>
+        </div>
+        <div class="main-body">
+            <div class="add-participants">
+                <form class='dashboard-form'>
+                    <div class="class-names"></div>
+                    <label>Select Stream :</label>
+                    <select name='stream' id='stream'>
+                        <option value='blank' selected disabled>--Select Stream--</option>
+                        <option value='science'>Science</option>
+                        <option value='commerce'>Commerce</option>
+                        <option value='arts'>Arts</option>
+                    </select><br>
+                    <label>Select Course :</label>
+                    <select id='course'>
+                        <option value='blank' id='select-course' selected disabled>--Select Course--</option>
+                    </select><br>
+                    <button id='search' class="dashboard-button">Search</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        $(document).ready(function() {
+
+            $.ajax({
+                url: "../php/get_class_list.php",
+                type: "POST",
+                success: function (data) {
+                    $(".class-names").append(data);
+                }
+            });
+            // fetch course
+            $("#stream").on("change", function() {
+                $('option').remove('.added-course');
+                var stream = $("#stream").val();
+                $.ajax({
+                    url: "../php/get-course.php",
+                    type: "POST",
+                    data: {
+                        stream: stream
+                    },
+                    success: function(data) {
+                        $('#course').append(data);
+                    }
+                });
+            });
+
+            // fetch students
+            $("#search").click(function(e) {
+                e.preventDefault();
+                var stream = $("#stream").val();
+                var course = $("#course").val();
+                var className = $("#class-name").val();
+                $("table").remove("#student-list");
+                $("p").remove(".error");
+                $("p").remove(".success");
+                $.ajax({
+                    url: "../php/get_student_list.php",
+                    type: "POST",
+                    data: {
+                        stream: stream,
+                        course: course,
+                        className: className
+                    },
+                    success: function(data) {
+                        $(".add-participants").append(data);
+                    }
+                });
+            });
+
+            // adding students
+            $(document).on("click", ".add-student", function() {
+                $("p").remove(".success");
+                $("p").remove(".error");
+                var id = $(this).val();
+                $("tr").remove("#" + id);
+                var className = $("#class-name").val();
+                $.ajax({
+                    url: "../php/add_student_in_class.php",
+                    type: "POST",
+                    data: {
+                        id: id,
+                        className: className
+                    },
+                    success: function(data) {
+                        $(".add-participants").append(data);
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

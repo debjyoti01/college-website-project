@@ -1,0 +1,182 @@
+/* css\log_in_style.css */
+
+/* all component */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Tahoma, Verdana, Geneva,  sans-serif;
+}
+
+
+/* utility */
+
+.clear{
+    clear: both;
+}
+
+.error{
+    padding: 10px;
+    background-color: rgb(245, 190, 186);
+    border: brown solid 1px;
+    border-radius: 5px;
+    margin: 10px auto ;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success{
+    padding: 10px;
+    background-color: rgb(163, 223, 128);
+    border: rgb(175, 240, 192) solid 1px;
+    border-radius: 5px;
+    margin: 10px auto ;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+
+.login_error{
+    padding: 10px;
+    background-color: rgb(245, 190, 186);
+    border: brown solid 1px;
+    border-radius: 5px;
+    margin: 10px auto ;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error-massage{
+    display: block;
+    float: right;
+    line-height: 0em;
+    position: relative;
+    top: -10px;
+    /* font-size: 1em; */
+    color: #ff0000;
+}
+
+/* body */
+
+body{
+    background-color: #f0f0f0;
+
+}
+
+/* nav-bar */
+
+nav{
+    background-color: #11113b;
+    overflow: auto;
+}
+
+.nav-items{
+    margin: auto;
+    width: 80%;
+    background-color: #11113b;
+    overflow: auto;
+}
+
+.nav-items ul{
+    float: right;
+
+}
+
+.nav-items li{
+    display: float;
+    float: left;
+    list-style: none;
+}
+
+.nav-items a{
+    display: block;
+    text-decoration: none;
+    padding: 15px 15px;
+    font-size: 1.2em;
+    color: white;
+}
+
+.nav-items a:hover,
+.nav-items .current{
+    background-color:  #00e6e6;
+    color: black;
+}
+
+
+
+/* welcome */
+
+.welcome{
+    width: 100%;
+    height: 700px;
+    background-image: url("../photo/home_screen.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.welcome .welcome-quote{
+    width: 80%;
+    margin: auto;
+    padding-top: 200px;
+}
+
+.welcome .welcome-quote h3 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    text-shadow: 2px 2px 2px #006680;
+    color: #00b8e6;
+    font-size: 3.2em;
+    line-height: 2em;
+    text-align: center;
+}
+
+.welcome .welcome-quote p{
+    float: right;
+    font-size: 2.5em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    text-shadow: 2px 2px 2px #995c00;
+    color: #ff9900;
+}
+
+
+/* feature of college */
+
+.college-features{
+    width: 100%;
+    height: 320px;
+}
+
+.college-features .feature-item{
+    display: float;
+    float: left;
+    width: 25%;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 10px;
+    height: 100%;
+}
+
+.college-features .feature-item img{
+    padding-top: 50px;
+    width: 150px;
+}
+
+.college-features .feature-item h5{
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+.college-features .feature-item:nth-child(odd){
+    background-color: #000066;
+    color: #f0f0f0;
+    
+}
+
+.college-features .feature-item:nth-child(even){
+    background-color: #fd5f00 ;
+    
+}

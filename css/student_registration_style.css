@@ -1,0 +1,69 @@
+/* css\student_registration_style.css */
+
+.registration-form{
+    background: linear-gradient(to bottom right, #33ccff 0%, #ff66cc 100%);
+    overflow: auto;
+}
+
+.form-container{
+    max-width: 480px;
+    /* min-height: 100vh; */
+    margin: auto;
+}
+
+#registration{
+    display: block;
+    background: white;
+    padding: 20px;
+    margin: 50px 0;
+    line-height: 3em;
+    border-radius: 5px;
+}
+
+#registration label{
+    /* font-weight: bold; */
+    font-size: 1.2em;
+}
+
+#registration input,#registration select{
+    /* width: 100%; */
+    float: right;
+    height: 30px;
+    padding: 2px;
+    margin: 0 2px ;
+    outline: none;
+    font-size: 1.1em;
+    border: none;
+    background: #f0f0f0;
+}
+
+#registration button{
+    display: block;
+    margin: 5px auto;
+    padding: 8px 20px;
+    font-size: 1.2em;
+    background: rgb(236, 86, 86);
+    color: white;
+    /* font-weight: bolder; */
+    border: none;
+    cursor: pointer;
+    border-radius: 18px;
+}
+
+
+
+
+#student-registration p{
+    display: block;
+    float: right;
+    line-height: 0em;
+    position: relative;
+    top: -10px;
+    /* font-size: 1em; */
+    color: #ff0000;
+}
+
+#student-registration #error-dp{
+    top: 38px;
+    left: 330px;
+}

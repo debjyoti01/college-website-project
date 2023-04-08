@@ -1,0 +1,271 @@
+/* css\teacher_student_dashboard.css */
+
+body {
+    background-color: rgb(52, 54, 53);
+}
+
+.session-details-container {
+    background-color: rgb(172, 195, 232);
+    overflow: auto;
+}
+
+.log-out a{
+    text-decoration: none;
+    background-color: rgb(209, 38, 29);
+    color: white;
+    font-style: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+}
+
+.session-details {
+    width: 80vw;
+    margin: auto;
+    padding: 10px;
+}
+
+.session-details h3 {
+    display: inline;
+}
+
+.session-details .log-out {
+    float: right;
+}
+
+
+
+.dashboard-body {
+    display: float;
+}
+
+.dashboard-body .option {
+    width: 25%;
+    float: left;
+}
+
+.dashboard-body .option li {
+    padding: 15px;
+    background-color: rgb(207, 88, 29);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.dashboard-body .main-body {
+    float: right;
+    width: 75%;
+}
+
+.teacher-details {
+    margin: auto;
+    width: 70%;
+}
+
+.teacher-details td {
+    padding: 30px 0;
+}
+
+.subject {
+    font-weight: 600;
+}
+
+#edit {
+    display: inline;
+    float: right;
+    margin: 20px;
+    border: none;
+    padding: 9px 20px;
+    background-color: blueviolet;
+    border-radius: 10px;
+    cursor: pointer;
+    color: blanchedalmond;
+}
+
+.main-body {
+    padding: 20px;
+    background-color: white;
+    margin: auto;
+    min-height: 90vh;
+}
+
+.dashboard-body .handel-class {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.dashboard-button {
+    display: block;
+    margin: 15px auto;
+    color: white;
+    background-color: rgb(207, 88, 29);
+    padding: 15px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.dashboard-body a {
+    text-decoration: none;
+    color: blanchedalmond;
+}
+
+.handel-class a {
+    width: 30%;
+    text-decoration: none;
+}
+
+.class-item {
+    padding: 30px;
+    margin: 20px;
+    background: linear-gradient(to bottom, #99ccff 0%, #0066ff 100%);
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+
+/* all forms design */
+
+.dashboard-form {
+    margin: auto;
+    width: 350px;
+}
+
+.dashboard-form label,
+.dashboard-form input,
+.dashboard-form select {
+    margin: 15px 0;
+}
+
+.dashboard-form label {
+    font-weight: 500;
+}
+
+.dashboard-form input {
+    width: 100%;
+}
+
+
+/* all tables design */
+
+.dashboard-table {
+    width: 80%;
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+
+.dashboard-table td,
+.dashboard-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.dashboard-table th {
+    background-color: rgb(74, 75, 77);
+    color: white;
+}
+
+.dashboard-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.dashboard-table tr:hover {
+    background-color: #ddd;
+}
+
+.dashboard-table button {
+    display: block;
+    margin: auto;
+    padding: 3px 10px;
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.dashboard-table .student-present {
+    display: inline;
+    margin: 0 10px;
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.dashboard-table .student-absent {
+    display: inline;
+    margin: 0 10px;
+    padding: 3px 10px;
+    background-color: rgb(209, 38, 29);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+
+/* design of massage view */
+
+#chat-box {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 600px;
+    height: 450px;
+    background-color: rgb(155, 242, 186);
+}
+
+#chat-box #massages {
+    overflow-y: auto;
+    height: 350px;
+    margin-bottom: 10px;
+}
+
+#massage-send-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#massage-send-box textarea {
+    padding: 10px;
+    height: 70px;
+    width: 80%;
+    background-color: white;
+    resize: none;
+}
+
+#send-massage {
+    display: block;
+    box-sizing: border-box;
+    color: white;
+    background-color: rgb(207, 88, 29);
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#massages .self,
+#massages .other {
+    margin: 5px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    padding: 5px;
+    max-width: 40%;
+    overflow-wrap: break-word;
+}
+
+#massages .chat-date-time {
+    font-size: .6em;
+}
+
+#massages .self {
+    float: right;
+    color: white;
+    background-color: rgb(29, 125, 16);
+}
+
+#massages .other {
+    float: left;
+}

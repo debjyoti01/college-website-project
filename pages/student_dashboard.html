@@ -1,0 +1,118 @@
+<!-- pages\student_dashboard.html -->
+
+<!-- in this page student show ther details and update phone number and email -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sheet1.css">
+    <link rel="stylesheet" href="../css/teacher_student_dashboard.css">
+    <title>Student log in</title>
+</head>
+
+<body>
+    <!-- nav-bar -->
+    <nav>
+        <div class="nav-bar">
+            <div class="nav-items">
+                <ul>
+                    <li class="nav-item"><a href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="current" href="log_in.html">Log In</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- shows the session details -->
+    <section class="session-details-container">
+        <section class="session-details">
+            <h3 class="session-id"></h3>
+            <h3 class="log-out"><a href="../php/log_out.php">Log Out</a></h3>
+        </section>
+    </section>
+
+    <script src="../js/jquery.js"></script>
+    <!-- fetch the session details -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "../php/check_session.php",
+                type: "POST",
+                data: {},
+                success: function (data) {
+                    if (data == 0) {
+                        window.location.replace("log_in.html");
+                    }
+                    $(".session-details .session-id").html("ID : " + data);
+                }
+            })
+        })
+    </script>
+
+    <!-- options of dashboard  -->
+    <section class="dashboard-body">
+        <div class="option">
+            <ul>
+                <li id="details"><a href="student_dashboard.html">Details</a></li>
+                <li id="classes"><a href="student_dashboard_class.html">Classes</a></li>
+                <li id="chat"><a href="student_dashboard_chat_groups.html">Chat Group</a></li>
+                <li id="attendance"><a href="sudent_dashboard_attendence.html">Attendence</a></li>
+            </ul>
+        </div>
+        <div class="main-body">
+            <button id="edit">Edit Details</button>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            // fetch details of student
+            $.ajax({
+                url: "../php/student_details.php",
+                type: "POST",
+                data: {},
+                success: function (data) {
+                    $(".main-body").append(data);
+                }
+            });
+
+            //edit the updated details
+            $("#edit").click(function () {
+                $(".error").remove();
+                $(".success").remove();
+                var contactNumber = $("#update-contact-number").val();
+                var email = $.trim($("#update-email").val());
+                if (contactNumber == "" || contactNumber.length != 10 || email == "" || !isEmail(email)) {
+                    $(".main-body").append("<p class='error'>Invalid Contact Number or Email</p>");
+                    console.log(contactNumber == "");
+                    console.log(contactNumber.length != 10);
+                    console.log(email == "");
+                    console.log(!isEmail(email));
+                }
+                else {
+                    $.ajax({
+                        url: "../php/student_details_update.php",
+                        type: "POST",
+                        data: { contactNumber: contactNumber, email: email },
+                        success: function (data) {
+                            $(".main-body").append(data);
+                        }
+
+                    });
+                }
+            });
+
+            // check email is vaild or not
+            function isEmail(email) {
+                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                return regex.test(email);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

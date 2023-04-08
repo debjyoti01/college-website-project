@@ -1,0 +1,92 @@
+<!-- pages\student_dashboard_class.html -->
+
+<!-- this page show enrolled classes for student -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sheet1.css">
+    <link rel="stylesheet" href="../css/teacher_student_dashboard.css">
+    <title>Student log in</title>
+</head>
+
+<body>
+    <!-- nav-bar -->
+    <nav>
+        <div class="nav-bar">
+            <div class="nav-items">
+                <ul>
+                    <li class="nav-item" ><a href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="current" href="log_in.html">Log In</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- shows the session details -->
+    <section class="session-details-container">
+        <section class="session-details">
+            <h3 class="session-id"></h3>
+            <h3 class="log-out"><a href="../php/log_out.php">Log Out</a></h3>
+        </section>
+    </section>
+    
+    <script src="../js/jquery.js"></script>
+    <!-- fetch the session details -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "../php/check_session.php",
+                type: "POST",
+                data: {},
+                success: function (data) {
+                    if (data == 0) {
+                        window.location.replace("log_in.html");
+                    }
+                    $(".session-details .session-id").html("ID : " + data);
+                }
+            })
+        })
+    </script>
+
+    <!-- options of dashboard  -->
+    <section class="dashboard-body">
+        <div class="option">
+            <ul>
+                <li id="details"><a href="student_dashboard.html">Details</a></li>
+                <li id="classes"><a href="student_dashboard_class.html">Classes</a></li>
+                <li id="chat"><a href="student_dashboard_chat_groups.html">Chat Group</a></li>
+                <li id="chat"><a href="sudent_dashboard_attendence.html">Attendence</a></li>
+            </ul>
+        </div>
+        <div class="main-body">
+            <div class="class-options handel-class">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            // fetch already enrolled cources
+            $.ajax({
+                url: "../php/get_class.php",
+                type: "POST",
+                success: function (data) {
+                    if (data == 0) {
+                        $('.main-body').append("<p class='error'>You are not enrolled to any Class</p>");
+                    }
+                    else {
+                        $('.class-options').append(data);
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
