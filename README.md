@@ -21,4 +21,3 @@ The purpose of this research is to analyze the use of The Student teacher manage
 
 <h1>ER Diagram</h1>
 ![image](https://user-images.githubusercontent.com/120040021/230706849-b637720e-78c1-4b70-b808-54b0db282096.png)
-
